@@ -31,3 +31,17 @@ RUN ./$MINICONDA_INSTALLER_SCRIPT -b -f -p $MINICONDA_PREFIX
 # Updating Conda with python=3.7 (Required for Xtreme compatibility)
 RUN conda install --channel defaults conda python=3.7 --yes
 RUN conda update --channel defaults --all --yes
+
+# Create a scripts directory to contain the scripts to be run
+RUN mkdir -p /root/scripts
+COPY xtreme_install_tools.sh /root/scripts
+RUN chmod -R 755 /root/scripts
+
+# Install Git
+RUN apt-get update && apt-get install -y git
+
+# Xtreme codebase setup
+WORKDIR /root
+RUN git clone https://github.com/google-research/xtreme.git
+RUN /root/scripts/xtreme_install_tools.sh
+
