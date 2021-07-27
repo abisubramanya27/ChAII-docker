@@ -42,6 +42,7 @@ elif [ $TASK == 'bucc2018' ]; then
   bash $REPO/scripts/run_bucc2018.sh $MODEL $GPU $DATA_DIR $OUT_DIR
 elif [ $TASK == 'tatoeba' ]; then
   bash $REPO/scripts/run_tatoeba.sh $MODEL $GPU $DATA_DIR $OUT_DIR
+# Added additional task
 elif [ $TASK == 'chaii_hi' ]; then
   bash $REPO/scripts/train_qa.sh $MODEL chaii_hi $TASK $GPU $DATA_DIR $OUT_DIR
 fi
