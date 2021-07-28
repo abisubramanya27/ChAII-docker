@@ -1,2 +1,2 @@
 # ChAII-docker
-Repo to build the docker image for Google ChAII from
+Repo to build the docker image for Google ChAII
