@@ -47,9 +47,8 @@ if [ $SRC == 'squad' ]; then
   TRAIN_FILE=${TASK_DATA_DIR}/train-v1.1.json
   PREDICT_FILE=${TASK_DATA_DIR}/dev-v1.1.json
 elif [ $SRC == 'chaii_hi' ]; then
-  TASK_DATA_DIR="/content/drive/MyDrive/chaii_data"
-  TRAIN_FILE=${TASK_DATA_DIR}/train.hi.qa.jsonl
-  PREDICT_FILE=${TASK_DATA_DIR}/dev.hi.qa.jsonl
+  TRAIN_FILE=${DATA_DIR}/train.hi.qa.jsonl
+  PREDICT_FILE=${DATA_DIR}/dev.hi.qa.jsonl
   TRAIN_LANG="hi"
   EVAL_LANG="hi"
 else

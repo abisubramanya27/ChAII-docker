@@ -1,5 +1,4 @@
-cd /root/xtreme
-
+#!/bin/bash
 # Copyright 2020 Google and DeepMind.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +13,7 @@ cd /root/xtreme
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+cd /root/xtreme
 set +eux  # for easier debugging
 
 REPO=$PWD
