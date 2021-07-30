@@ -45,12 +45,14 @@ COPY install_tools.sh /root/xtreme
 RUN chmod -R +x /root/xtreme
 RUN /root/xtreme/install_tools.sh
 
-# Replace train.sh, train_qa.sh in xtreme/
+# Replace train.sh, train_qa.sh, predict_qa.sh in xtreme/
 COPY train.sh /root/xtreme/scripts
 COPY train_qa.sh /root/xtreme/scripts
+COPY predict_qa.sh /root/xtreme/scripts
 
 # Add the main scripts to root folder to execute from the image
 COPY run.sh /root
+COPY predict.sh /root
 
 # Install Jupyter and colab requirements
 RUN pip --use-deprecated=legacy-resolver install jupyterlab jupyter_http_over_ws ipywidgets google-colab  \
