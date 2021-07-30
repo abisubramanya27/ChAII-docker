@@ -47,10 +47,17 @@ if [ $SRC == 'squad' ]; then
   TRAIN_FILE=${TASK_DATA_DIR}/train-v1.1.json
   PREDICT_FILE=${TASK_DATA_DIR}/dev-v1.1.json
 elif [ $SRC == 'chaii_hi' ]; then
-  TRAIN_FILE=${DATA_DIR}/train.hi.qa.jsonl
-  PREDICT_FILE=${DATA_DIR}/dev.hi.qa.jsonl
+  TASK_DATA_DIR=${DATA_DIR}
+  TRAIN_FILE=${TASK_DATA_DIR}/train.hi.qa.jsonl
+  PREDICT_FILE=${TASK_DATA_DIR}/dev.hi.qa.jsonl
   TRAIN_LANG="hi"
   EVAL_LANG="hi"
+elif [ $SRC == 'chaii_ta' ]; then
+  TASK_DATA_DIR=${DATA_DIR}
+  TRAIN_FILE=${TASK_DATA_DIR}/train.ta.qa.jsonl
+  PREDICT_FILE=${TASK_DATA_DIR}/dev.ta.qa.jsonl
+  TRAIN_LANG="ta"
+  EVAL_LANG="ta"
 else
   TASK_DATA_DIR=${DATA_DIR}/tydiqa
   TRAIN_FILE=${TASK_DATA_DIR}/tydiqa-goldp-v1.1-train/tydiqa.en.train.json

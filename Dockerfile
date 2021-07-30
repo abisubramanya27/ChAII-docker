@@ -45,5 +45,23 @@ COPY install_tools.sh /root/xtreme
 RUN chmod -R +x /root/xtreme
 RUN /root/xtreme/install_tools.sh
 
+# Replace train.sh, train_qa.sh in xtreme/
+COPY train.sh /root/xtreme/scripts
+COPY train_qa.sh /root/xtreme/scripts
+
+# Add the main scripts to root folder to execute from the image
+COPY run.sh /root
+
+# Install Jupyter and colab requirements
+RUN pip --use-deprecated=legacy-resolver install jupyterlab jupyter_http_over_ws ipywidgets google-colab  \
+    && jupyter serverextension enable --py jupyter_http_over_ws   \
+    && jupyter nbextension enable --py widgetsnbextension
+
+# Expose port for notebook and run jupyter
+ARG COLAB_PORT=8081
+EXPOSE 8081
+ENV COLAB_PORT=8081
+CMD [ "/bin/sh", "-c",    "jupyter notebook --NotebookApp.allow_origin='https://colab.research.google.com' --allow-root --port $COLAB_PORT --NotebookApp.port_retries=0 --ip 0.0.0.0"]
+
 
 

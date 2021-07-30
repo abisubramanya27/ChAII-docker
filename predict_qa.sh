@@ -38,6 +38,9 @@ elif [ $TGT == 'mlqa' ]; then
   langs=( en es de ar hi vi zh )
 elif [ $TGT == 'tydiqa' ]; then
   langs=( en ar bn fi id ko ru sw te )
+elif [ $TGT == 'chaii_hi' ]; then
+  DIR=${DATA_DIR}
+  langs=( hi )
 fi
 
 echo "************************"
