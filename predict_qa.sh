@@ -60,9 +60,9 @@ for lang in ${langs[@]}; do
     TEST_FILE=${DIR}/MLQA_V1/test/test-context-$lang-question-$lang.json
   elif [ $TGT == 'tydiqa' ]; then
     TEST_FILE=${DIR}/tydiqa-goldp-v1.1-dev/tydiqa.$lang.dev.json
-  elif [$TGT == 'chaii_hi']; then
+  elif [ $TGT == 'chaii_hi' ]; then
     TEST_FILE=${DIR}/test.hi.qa.jsonl
-  elif [$TGT == 'chaii_ta']; then
+  elif [ $TGT == 'chaii_ta' ]; then
     TEST_FILE=${DIR}/test.ta.qa.jsonl
   fi
 
