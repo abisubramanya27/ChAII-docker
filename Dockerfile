@@ -50,9 +50,11 @@ COPY train.sh /root/xtreme/scripts
 COPY train_qa.sh /root/xtreme/scripts
 COPY predict_qa.sh /root/xtreme/scripts
 
-# Add the main scripts to root folder to execute from the image
+# Add the main scripts (run.sh, predict.sh, pre_evaluate.sh, evaluate.sh) to root folder to execute from the image
 COPY run.sh /root
 COPY predict.sh /root
+COPY pre_evaluate.sh /root
+COPY evaluate.sh /root
 
 # Install Jupyter and colab requirements
 RUN pip --use-deprecated=legacy-resolver install jupyterlab jupyter_http_over_ws ipywidgets google-colab  \

@@ -21,6 +21,8 @@ MODEL_PATH=${3}
 TGT=${4:-xquad}
 GPU=${5:-0}
 DATA_DIR=${6:-"$REPO/download/"}
+PREDICTIONS_DIR=${7:-"$REPO/predictions"}
+PREDICT_FILE_NAME=${8}
 
 if [ ! -d "${MODEL_PATH}" ]; then
   echo "Model path ${MODEL_PATH} does not exist."
@@ -28,7 +30,6 @@ if [ ! -d "${MODEL_PATH}" ]; then
 fi
 
 DIR=${DATA_DIR}/${TGT}/
-PREDICTIONS_DIR=${REPO}/predictions
 PRED_DIR=${PREDICTIONS_DIR}/$TGT/
 mkdir -p "${PRED_DIR}"
 
@@ -41,9 +42,11 @@ elif [ $TGT == 'tydiqa' ]; then
 elif [ $TGT == 'chaii_hi' ]; then
   DIR=${DATA_DIR}
   langs=( hi )
+  PRED_DIR=${PREDICTIONS_DIR}
 elif [ $TGT == 'chaii_ta' ]; then
   DIR=${DATA_DIR}
   langs=( ta )
+  PRED_DIR=${PREDICTIONS_DIR}
 fi
 
 echo "************************"
@@ -61,9 +64,11 @@ for lang in ${langs[@]}; do
   elif [ $TGT == 'tydiqa' ]; then
     TEST_FILE=${DIR}/tydiqa-goldp-v1.1-dev/tydiqa.$lang.dev.json
   elif [ $TGT == 'chaii_hi' ]; then
-    TEST_FILE=${DIR}/test.hi.qa.jsonl
+    PREDICT_FILE_NAME=${PREDICT_FILE_NAME:-"dev.hi.qa.jsonl"}
+    TEST_FILE=${DIR}/${PREDICT_FILE_NAME}
   elif [ $TGT == 'chaii_ta' ]; then
-    TEST_FILE=${DIR}/test.ta.qa.jsonl
+    PREDICT_FILE_NAME=${PREDICT_FILE_NAME:-"dev.ta.qa.jsonl"}
+    TEST_FILE=${DIR}/${PREDICT_FILE_NAME}
   fi
 
   CUDA_VISIBLE_DEVICES=${GPU} python third_party/run_squad.py \

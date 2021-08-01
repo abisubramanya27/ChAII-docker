@@ -19,6 +19,9 @@ TASK=${2:-pawsx}
 GPU=${3:-0}
 DATA_DIR=${4:-"$REPO/download/"}
 OUT_DIR=${5:-"$REPO/outputs-temp/"}
+TRAIN_FILE_NAME=${6}
+PREDICT_FILE_NAME=${7}
+
 echo "Fine-tuning $MODEL on $TASK using GPU $GPU"
 echo "Load data from $DATA_DIR, and save models to $OUT_DIR"
 
@@ -44,7 +47,7 @@ elif [ $TASK == 'tatoeba' ]; then
   bash $REPO/scripts/run_tatoeba.sh $MODEL $GPU $DATA_DIR $OUT_DIR
 # Added additional tasks for chaii
 elif [ $TASK == 'chaii_hi' ]; then
-  bash $REPO/scripts/train_qa.sh $MODEL chaii_hi $TASK $GPU $DATA_DIR $OUT_DIR
+  bash $REPO/scripts/train_qa.sh $MODEL chaii_hi $TASK $GPU $DATA_DIR $OUT_DIR $TRAIN_FILE_NAME $PREDICT_FILE_NAME
 elif [ $TASK == 'chaii_ta' ]; then
-  bash $REPO/scripts/train_qa.sh $MODEL chaii_ta $TASK $GPU $DATA_DIR $OUT_DIR
+  bash $REPO/scripts/train_qa.sh $MODEL chaii_ta $TASK $GPU $DATA_DIR $OUT_DIR $TRAIN_FILE_NAME $PREDICT_FILE_NAME
 fi

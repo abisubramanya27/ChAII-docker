@@ -26,6 +26,8 @@ TGT=${3:-xquad}
 GPU=${4:-0}
 DATA_DIR=${5:-"$REPO/download/"}
 OUT_DIR=${6:-"$REPO/outputs/"}
+TRAIN_FILE_NAME=${7}
+PREDICT_FILE_NAME=${8}
 
 MAXL=384
 LR=3e-5
@@ -48,14 +50,18 @@ if [ $SRC == 'squad' ]; then
   PREDICT_FILE=${TASK_DATA_DIR}/dev-v1.1.json
 elif [ $SRC == 'chaii_hi' ]; then
   TASK_DATA_DIR=${DATA_DIR}
-  TRAIN_FILE=${TASK_DATA_DIR}/train.hi.qa.jsonl
-  PREDICT_FILE=${TASK_DATA_DIR}/dev.hi.qa.jsonl
+  TRAIN_FILE_NAME=${TRAIN_FILE_NAME:-train.hi.qa.jsonl}
+  PREDICT_FILE_NAME=${PREDICT_FILE_NAME:-dev.hi.qa.jsonl}
+  TRAIN_FILE=${TASK_DATA_DIR}/${TRAIN_FILE_NAME}
+  PREDICT_FILE=${TASK_DATA_DIR}/${PREDICT_FILE_NAME}
   TRAIN_LANG="hi"
   EVAL_LANG="hi"
 elif [ $SRC == 'chaii_ta' ]; then
   TASK_DATA_DIR=${DATA_DIR}
-  TRAIN_FILE=${TASK_DATA_DIR}/train.ta.qa.jsonl
-  PREDICT_FILE=${TASK_DATA_DIR}/dev.ta.qa.jsonl
+  TRAIN_FILE_NAME=${TRAIN_FILE_NAME:-train.ta.qa.jsonl}
+  PREDICT_FILE_NAME=${PREDICT_FILE_NAME:-dev.ta.qa.jsonl}
+  TRAIN_FILE=${TASK_DATA_DIR}/${TRAIN_FILE_NAME}
+  PREDICT_FILE=${TASK_DATA_DIR}/${PREDICT_FILE_NAME}
   TRAIN_LANG="ta"
   EVAL_LANG="ta"
 else
@@ -91,4 +97,4 @@ CUDA_VISIBLE_DEVICES=$GPU python third_party/run_squad.py \
 
 
 # predict
-bash scripts/predict_qa.sh $MODEL $MODEL_TYPE $MODEL_PATH $TGT $GPU $DATA_DIR
+bash scripts/predict_qa.sh $MODEL $MODEL_TYPE $MODEL_PATH $TGT $GPU $DATA_DIR $PREDICT_FILE_NAME
