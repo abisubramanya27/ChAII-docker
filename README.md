@@ -1,6 +1,15 @@
 # ChAII-docker
 Repo to build the docker image for Google ChAII
 
+## Docker
+### Building the image
+`docker build -t <name:tag> .`
+
+### Running the image (and jupyter)
+`docker run -it -v ~/Desktop/ChAII/mount:/root/mount -p 8081:8081 <name:tag>`
+
+
+
 ## Scripts and Arguments
 #### [RUN SCRIPT](/run.sh)
 - **TASK :** chaii_hi / chaii_ta
