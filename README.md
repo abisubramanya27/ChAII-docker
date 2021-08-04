@@ -5,8 +5,8 @@ Repo to build the docker image for Google ChAII
 ### Building the image
 `docker build -t <name:tag> .`
 
-### Running the image (and jupyter)
-`docker run -it -v ~/Desktop/ChAII/mount:/root/mount -p 8081:8081 <name:tag>`
+### Running the image (with jupyter)
+`docker run -it -v <absolute path of directory to be mounted from local>:/root/mount -p 8081:8081 <name:tag>`
 
 
 
