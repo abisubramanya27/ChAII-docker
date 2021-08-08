@@ -1,13 +1,20 @@
 # ChAII-docker
 Repo to build the docker image for Google ChAII
 
+
 ## Docker
+
+### Install Docker
+[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+
+### Install nvidia-container-toolkit
+[https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+
 ### Building the image
 `docker build -t <name:tag> .`
 
 ### Running the image (with jupyter)
-`docker run -it -v <absolute path of directory to be mounted from local>:/root/mount -p 8081:8081 <name:tag>`
-
+`docker run --gpus all -it -v <absolute path of directory to be mounted from local>:/root/mount -p 8081:8081 <name:tag>`
 
 
 ## Scripts and Arguments
