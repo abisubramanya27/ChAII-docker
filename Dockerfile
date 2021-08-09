@@ -1,5 +1,5 @@
 # import pre-built image nvidia/cuda that comes with pre-installed CUDA packages
-FROM pytorch/pytorch:1.3-cuda10.1-cudnn7-runtime
+FROM nvidia/cuda:10.2-base-ubuntu18.04
 
 # Install Python 3.7 and pip
 RUN apt-get -y update \

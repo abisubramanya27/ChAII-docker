@@ -1,14 +1,17 @@
 # ChAII-docker
 Repo to build the docker image for Google ChAII
 
+## Data setup
+
+Download the data files from Kaggle and put it inside the `mount/dataset` folder. We will attach this directory to our docker container in order to use the dataset and the Jupyter notebook provided.
 
 ## Docker
 
-### Install Docker
-[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+### Install Docker and nvidia-container-toolkit
+`sh setupDocker.sh`
 
-### Install nvidia-container-toolkit
-[https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+This script will setup Docker using the official convenience script and install the nvidia-container-toolkit so that we can use host machine's GPU inside the container. 
+The documentation on this script can be found [here](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
 ### Building the image
 `docker build -t <name:tag> .`
@@ -44,11 +47,3 @@ Repo to build the docker image for Google ChAII
     - *default* : 0
 - **PREDICT_FILE_NAME:** the name of the file containing the prediction data (inside *DATA_DIR*)
     - *default* : for **TASK** == chaii_hi, dev.hi.qa.jsonl;  for **TASK** == chaii_hi, dev.ta.qa.jsonl
-
-#### [PRE-EVALUATE SCRIPT](/pre_evaluate.sh)
-- **TASK_NAME :** chaii_hi / chaii_ta
-- **GOLD_DATA_LOCATION :** the absolute directory path containing the dataset files *(no suffix will be added for chaii tasks)*
-- **PREDICTIONS_DIR :** the absolute directory path to which predictions were written *(by predict_qa.sh script)*
-
-#### [EVALUATE SCRIPT](/evaluate.sh)
--- NIL --
